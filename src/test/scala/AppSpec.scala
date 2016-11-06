@@ -2,12 +2,9 @@ package jml.iteratees
 
 import org.scalatest.{FunSuite, Matchers}
 import play.api.libs.iteratee._
-
-//import scala.concurrent.ExecutionContext.Implicits._
+import scala.concurrent.duration.Duration
+// import scala.concurrent.ExecutionContext.Implicits._
 import play.api.libs.iteratee.Execution.Implicits._
-
-import scala.concurrent.duration._
-import scala.language.postfixOps
 
 class CheckSpec
   extends FunSuite
@@ -19,10 +16,10 @@ class CheckSpec
       IterateeUtils.extractComments(Enumerator.enumerate("abcd<!--efgh-->ijkl<!--mnop-->qrst".toCharArray)).run(
           Iteratee.getChunks
       ),
-      10 seconds
+      Duration.Inf
     );
 
-    results should contain theSameElementsAs List("efgh", "mnop")
+    results should contain theSameElementsAs List("efgh", "mnop", "")
   }
 
 }
