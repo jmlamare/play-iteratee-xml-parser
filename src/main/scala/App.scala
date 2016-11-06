@@ -3,12 +3,8 @@ package jml.iteratees
 import play.api.libs.iteratee._
 //import scala.concurrent.ExecutionContext.Implicits._
 import play.api.libs.iteratee.Execution.Implicits._
-// import scala.concurrent._
-// import scala.concurrent.duration._
 
 object IterateeUtils {
-
-
 
   def skipUntil(target: String, acum: String = ""): Iteratee[Char, Boolean] = Cont {
     case Input.Empty => skipUntil(target)
@@ -37,7 +33,7 @@ object IterateeUtils {
 object HelloWorld extends App {
 
   IterateeUtils.extractComments(Enumerator.enumerate(scala.io.Source.stdin)).apply(
-    Iteratee.foreach[String](s=>println("=>" +s))
+    Iteratee.foreach[String](println)
   )
 
 }

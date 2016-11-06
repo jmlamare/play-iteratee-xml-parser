@@ -4,7 +4,7 @@ import org.scalatest.{FunSuite, Matchers}
 import play.api.libs.iteratee._
 
 //import scala.concurrent.ExecutionContext.Implicits._
-//import play.api.libs.iteratee.Execution.Implicits._
+import play.api.libs.iteratee.Execution.Implicits._
 
 import scala.concurrent.duration._
 import scala.language.postfixOps
@@ -12,16 +12,6 @@ import scala.language.postfixOps
 class CheckSpec
   extends FunSuite
   with Matchers {
-
-
-  implicit val defaultExecutionContext: scala.concurrent.ExecutionContextExecutor = new scala.concurrent.ExecutionContextExecutor () {
-
-    def execute(runnable: Runnable): Unit = runnable.run()
-
-    def reportFailure(@deprecatedName('t) cause: Throwable): Unit = ???
-
-  }
-
 
   test("xml comments extraction") {
 
